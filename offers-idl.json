@@ -1,0 +1,231 @@
+{
+  "version": "0.2.0",
+  "name": "offer_program_solana",
+  "instructions": [
+    {
+      "name": "makeOffer",
+      "accounts": [
+        {
+          "name": "buyer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "offerAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "buyerReceiveTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "commToken",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": {
+            "defined": "OfferData"
+          }
+        }
+      ]
+    },
+    {
+      "name": "acceptOffer",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "buyer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyerReceiveTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ownerSourceTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "offerAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchangeFeeRecipient",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "commToken",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": {
+            "defined": "OfferData"
+          }
+        }
+      ]
+    },
+    {
+      "name": "cancelOffer",
+      "accounts": [
+        {
+          "name": "buyer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buyerReceiveTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "offerAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "commToken",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "OfferAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "buyerKey",
+            "type": "publicKey"
+          },
+          {
+            "name": "mintKey",
+            "type": "publicKey"
+          },
+          {
+            "name": "buyerReceiveTokenAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "buyerAmount",
+            "type": "u64"
+          },
+          {
+            "name": "ownerAmount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "OfferData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "buyerAmount",
+            "type": "u64"
+          },
+          {
+            "name": "ownerAmount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AmountOverflow",
+      "msg": "Amount overflow when modifying balance of accounts"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidRoyaltyFee",
+      "msg": "Invalid royalty fee"
+    },
+    {
+      "code": 6002,
+      "name": "CreatorsMismatch",
+      "msg": "Accounts passed as creators are not the ones in the metadata account"
+    }
+  ],
+  "metadata": {
+    "address": "exofLDXJoFji4Qyf9jSAH59J4pp82UT5pmGgR6iT24Z"
+  }
+}
