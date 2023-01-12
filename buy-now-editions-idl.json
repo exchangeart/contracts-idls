@@ -1,5 +1,5 @@
 {
-  "version": "1.2.3",
+  "version": "2.0.0",
   "name": "editions_program_solana",
   "instructions": [
     {
@@ -11,6 +11,11 @@
           "isSigner": true
         },
         {
+          "name": "sellerSourceTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "masterMintKey",
           "isMut": false,
           "isSigner": false
@@ -18,6 +23,11 @@
         {
           "name": "exchgMasterEditionDepositAuthority",
           "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "exchgMasterEditionDepositAccount",
+          "isMut": true,
           "isSigner": false
         },
         {
@@ -31,22 +41,17 @@
           "isSigner": true
         },
         {
-          "name": "exchgMasterEditionDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "sellerSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false
         },
         {
           "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -71,133 +76,25 @@
       ]
     },
     {
-      "name": "createIncrementingPriceEditionSale",
+      "name": "mintFixedPriceEdition",
       "accounts": [
         {
-          "name": "seller",
+          "name": "payer",
           "isMut": true,
           "isSigner": true
         },
-        {
-          "name": "masterMintKey",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "pdaDepositAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "masterEditionPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "depositAccountAddress",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "sellerSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "CreateIncrementingPriceEditionSaleIxData"
-          }
-        }
-      ]
-    },
-    {
-      "name": "mintIncrementingPriceEdition",
-      "accounts": [
         {
           "name": "buyer",
           "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "masterMintKey",
-          "isMut": false,
           "isSigner": false
         },
         {
-          "name": "masterEditionPda",
+          "name": "payerSettlementMintPaymentAccount",
           "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "masterMetadataPda",
-          "isMut": false,
           "isSigner": false
         },
         {
           "name": "seller",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionMetadataPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionMintKey",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "editionMarkPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "depositAccountAddress",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "buyerEditionTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -207,90 +104,17 @@
           "isSigner": false
         },
         {
-          "name": "pdaDepositAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "MintIncrementingPriceEditionIxData"
-          }
-        }
-      ]
-    },
-    {
-      "name": "mintFixedPriceEdition",
-      "accounts": [
-        {
-          "name": "buyer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "masterMintKey",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "masterEditionPda",
+          "name": "exchangeFeeRecipientSettlementMintReceiveAccount",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "masterMetadataPda",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "seller",
+          "name": "settlementMint",
           "isMut": false,
           "isSigner": false
         },
         {
           "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionMetadataPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionPda",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionMintKey",
           "isMut": true,
           "isSigner": false
         },
@@ -300,33 +124,68 @@
           "isSigner": false
         },
         {
-          "name": "editionMarkPda",
+          "name": "masterMintKey",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "masterEditionPda",
           "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterMetadataPda",
+          "isMut": false,
           "isSigner": false
         },
         {
           "name": "exchgMasterEditionDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newEditionDepositAuthority",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "exchangeFeeRecipient",
-          "isMut": true,
+          "isMut": false,
           "isSigner": false
         },
         {
           "name": "exchgMasterEditionDepositAuthority",
           "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "newEditionMintKey",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "newEditionPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "newEditionMetadataPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyerNewEditionDepositAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchgNewEditionDepositAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchgNewEditionDepositAuthority",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "editionMarkPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "newEditionRoyaltyProtectionMarker",
+          "isMut": true,
           "isSigner": false
         },
         {
@@ -336,6 +195,11 @@
         },
         {
           "name": "cardinalMintCounter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "cardinalManagerTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -361,6 +225,11 @@
         },
         {
           "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -496,47 +365,6 @@
       ]
     },
     {
-      "name": "createRoyaltyProtectionMarker",
-      "accounts": [
-        {
-          "name": "buyer",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "royaltyProtectionMarker",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mintKey",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "exchgDepositAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructions",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
       "name": "createBuynowRoyaltyProtectedSale",
       "accounts": [
         {
@@ -570,6 +398,11 @@
           "isSigner": false
         },
         {
+          "name": "editionPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "royaltyProtectionMarker",
           "isMut": false,
           "isSigner": false
@@ -585,17 +418,12 @@
           "isSigner": false
         },
         {
-          "name": "editionPda",
+          "name": "tokenMetadataProgram",
           "isMut": false,
           "isSigner": false
         },
         {
-          "name": "exchangeFeeRecipient",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
+          "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -638,6 +466,11 @@
           "isSigner": true
         },
         {
+          "name": "sellerSourceTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "mintKey",
           "isMut": false,
           "isSigner": false
@@ -654,11 +487,6 @@
         },
         {
           "name": "depositAccountAddress",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "sellerSourceTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -749,6 +577,11 @@
           "isSigner": false
         },
         {
+          "name": "mintEditionPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "exchgDepositAccount",
           "isMut": true,
           "isSigner": false
@@ -764,6 +597,11 @@
           "isSigner": false
         },
         {
+          "name": "cardinalManagerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "instructions",
           "isMut": false,
           "isSigner": false
@@ -775,6 +613,11 @@
         },
         {
           "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -800,9 +643,19 @@
       "name": "executeBuynowSale",
       "accounts": [
         {
-          "name": "buyer",
+          "name": "payer",
           "isMut": true,
           "isSigner": true
+        },
+        {
+          "name": "buyer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerSettlementMintPaymentAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
           "name": "seller",
@@ -810,17 +663,27 @@
           "isSigner": false
         },
         {
+          "name": "sellerSettlementMintPaymentAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchangeFeeRecipient",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchangeFeeRecipientSettlementMintPaymentAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "settlementMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mintKey",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "buyerTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -830,12 +693,27 @@
           "isSigner": false
         },
         {
+          "name": "mintKey",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "mintMetadataAccount",
           "isMut": true,
           "isSigner": false
         },
         {
+          "name": "mintEditionPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "exchgDepositAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyerTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -850,7 +728,7 @@
           "isSigner": false
         },
         {
-          "name": "exchangeFeeRecipient",
+          "name": "cardinalManagerTokenAccount",
           "isMut": true,
           "isSigner": false
         },
@@ -898,150 +776,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "migrateListing",
-      "accounts": [
-        {
-          "name": "exchgTempSigner",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "oldAuthorityPda",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "seller",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mintKey",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "pdaDepositAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "depositAccountAddress",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "currentEscrowDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "MigrateListingIxData"
-          }
-        }
-      ]
-    },
-    {
-      "name": "freezeAndClaim",
-      "accounts": [
-        {
-          "name": "mintKey",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mintEditionPda",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mintSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mintSourceAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "mintRecipientAuthority",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "mintRecipientTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManagerTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalTokenManagerProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructions",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
     },
     {
       "name": "createTransferReceipt",
@@ -1149,20 +883,19 @@
             "type": "bool"
           },
           {
-            "name": "padding2",
-            "type": {
-              "array": [
-                "u8",
-                25
-              ]
-            }
+            "name": "splTokenSettlement",
+            "type": "bool"
+          },
+          {
+            "name": "settlementMint",
+            "type": "publicKey"
           },
           {
             "name": "padding3",
             "type": {
               "array": [
                 "u8",
-                30
+                22
               ]
             }
           }
@@ -1328,20 +1061,19 @@
             "type": "u64"
           },
           {
+            "name": "splTokenSettlement",
+            "type": "bool"
+          },
+          {
+            "name": "settlementMint",
+            "type": "publicKey"
+          },
+          {
             "name": "padding2",
             "type": {
               "array": [
                 "u8",
-                22
-              ]
-            }
-          },
-          {
-            "name": "padding3",
-            "type": {
-              "array": [
-                "u8",
-                30
+                19
               ]
             }
           },
@@ -1400,22 +1132,10 @@
                 32
               ]
             }
-          }
-        ]
-      }
-    },
-    {
-      "name": "MigrateListingIxData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "price",
-            "type": "u64"
           },
           {
-            "name": "quantity",
-            "type": "u16"
+            "name": "splTokenSettlement",
+            "type": "bool"
           }
         ]
       }
@@ -1460,34 +1180,14 @@
           {
             "name": "royaltyProtection",
             "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "CreateIncrementingPriceEditionSaleIxData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "price",
-            "type": "u64"
           },
           {
-            "name": "pricingType",
-            "type": "u64"
+            "name": "splTokenSettlement",
+            "type": "bool"
           },
           {
-            "name": "increment",
-            "type": "u64"
-          },
-          {
-            "name": "saleType",
-            "type": "u64"
-          },
-          {
-            "name": "start",
-            "type": "u64"
+            "name": "settlementMint",
+            "type": "publicKey"
           }
         ]
       }
@@ -1525,35 +1225,14 @@
                 32
               ]
             }
-          }
-        ]
-      }
-    },
-    {
-      "name": "MintIncrementingPriceEditionIxData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "editionNo",
-            "type": "u64"
           },
           {
-            "name": "timestamp",
-            "type": "u64"
+            "name": "royaltyProtected",
+            "type": "bool"
           },
           {
-            "name": "price",
-            "type": "u64"
-          },
-          {
-            "name": "hmacCode",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
+            "name": "splTokenSettlement",
+            "type": "bool"
           }
         ]
       }
@@ -1578,6 +1257,14 @@
           {
             "name": "start",
             "type": "u64"
+          },
+          {
+            "name": "splTokenSettlement",
+            "type": "bool"
+          },
+          {
+            "name": "settlementMint",
+            "type": "publicKey"
           }
         ]
       }
@@ -1718,6 +1405,21 @@
       "code": 6026,
       "name": "IncorrectPreviousInstruction",
       "msg": "Incorrect previous instruction"
+    },
+    {
+      "code": 6027,
+      "name": "InvalidSettlementMint",
+      "msg": "Invalid settlement mint"
+    },
+    {
+      "code": 6028,
+      "name": "NumericalOverflow",
+      "msg": "Numerical overflow"
+    },
+    {
+      "code": 6029,
+      "name": "PublicKeyMismatch",
+      "msg": "Public key mismatch"
     }
   ],
   "metadata": {
