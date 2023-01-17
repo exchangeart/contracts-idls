@@ -21,16 +21,6 @@
           "isSigner": true
         },
         {
-          "name": "buyerReceiveTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "commToken",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false
@@ -99,7 +89,7 @@
           "isSigner": false
         },
         {
-          "name": "commToken",
+          "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -115,6 +105,11 @@
         },
         {
           "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
           "isMut": false,
           "isSigner": false
         }
@@ -142,22 +137,13 @@
           "isSigner": false
         },
         {
-          "name": "buyerReceiveTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
           "name": "offerAccount",
           "isMut": true,
           "isSigner": false
-        },
-        {
-          "name": "commToken",
-          "isMut": false,
-          "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+      ]
     }
   ],
   "accounts": [
@@ -188,6 +174,34 @@
           }
         ]
       }
+    },
+    {
+      "name": "EditionsGlobalOfferAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "initializer",
+            "type": "publicKey"
+          },
+          {
+            "name": "masterEditionPda",
+            "type": "publicKey"
+          },
+          {
+            "name": "pricePerEdition",
+            "type": "u64"
+          },
+          {
+            "name": "maxOrders",
+            "type": "u16"
+          },
+          {
+            "name": "ordersFilled",
+            "type": "u16"
+          }
+        ]
+      }
     }
   ],
   "types": [
@@ -202,6 +216,34 @@
           },
           {
             "name": "ownerAmount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EditionsGlobalOfferData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pricePerEdition",
+            "type": "u64"
+          },
+          {
+            "name": "maxOrders",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EditionsAcceptGlobalOfferData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "price",
             "type": "u64"
           }
         ]
@@ -223,9 +265,21 @@
       "code": 6002,
       "name": "CreatorsMismatch",
       "msg": "Accounts passed as creators are not the ones in the metadata account"
+    },
+    {
+      "code": 6003,
+      "name": "OwnerAmountMismatch",
+      "msg": "Owner amount mismatch"
+    },
+    {
+      "code": 6004,
+      "name": "BuyerAmountMismatch",
+      "msg": "Buyer amount mismatch"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidMasterEditionSupply",
+      "msg": "This is not a master edition with supply. No editions can be printed out of it"
     }
-  ],
-  "metadata": {
-    "address": "exofLDXJoFji4Qyf9jSAH59J4pp82UT5pmGgR6iT24Z"
-  }
+  ]
 }
