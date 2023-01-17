@@ -281,5 +281,8 @@
       "name": "InvalidMasterEditionSupply",
       "msg": "This is not a master edition with supply. No editions can be printed out of it"
     }
-  ]
+  ],
+  "metadata": {
+    "address": "exofLDXJoFji4Qyf9jSAH59J4pp82UT5pmGgR6iT24Z"
+  }
 }
