@@ -1,6 +1,10 @@
-# [Exchange.art](https://exchange.art/) IDLs
+# [Exchange.art](https://exchange.art/) &  [CodeCanvas.art](https://codecanvas.art/) IDLs
 
+## Code Canvas contract
 
+Program Id: `CoCaSGpuNso2yQP3oqi1tXt82wBp3y78SJDwLCboc8WS`
+
+IDL: `code-canvas-idl.json`
 
 ## Buy now + Editions contract
 
@@ -26,7 +30,6 @@ Note:
 Unfortunately, we do not have an IDL for the Auctions contract yet. We are working on it and will update this page as soon as we have it.
 
 In meantime, feel free to use our @exchangeart/auction ([https://www.npmjs.com/package/@exchangeart/auction](https://www.npmjs.com/package/@exchangeart/auction)) package to interact with the contract.
-
 
 ### Help
 If you have any questions, feel free to get in touch with us https://exchangeart.freshdesk.com/support/home.
