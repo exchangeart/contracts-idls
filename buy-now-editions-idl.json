@@ -124,6 +124,11 @@
           "isSigner": false
         },
         {
+          "name": "whitelistingState",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "masterMintKey",
           "isMut": false,
           "isSigner": false
@@ -341,6 +346,21 @@
         },
         {
           "name": "pdaDepositAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
           "isMut": false,
           "isSigner": false
         },
@@ -782,7 +802,7 @@
       "accounts": [
         {
           "name": "exchgDepositAuthority",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
@@ -811,6 +831,26 @@
           "isSigner": true
         },
         {
+          "name": "editionPda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "cardinalManagerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "exchgDepositAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "cardinalMintCounter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
           "name": "cardinalTokenManagerProgram",
           "isMut": false,
           "isSigner": false
@@ -821,7 +861,22 @@
           "isSigner": false
         },
         {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
           "isMut": false,
           "isSigner": false
         }
@@ -834,6 +889,114 @@
           }
         }
       ]
+    },
+    {
+      "name": "whitelistWallet",
+      "accounts": [
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "wallet",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "whitelistingState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleStateAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "removeWalletFromWhitelist",
+      "accounts": [
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "wallet",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "whitelistingState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleStateAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "closeWalletMintingState",
+      "accounts": [
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "wallet",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "whitelistingState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleStateAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -999,6 +1162,31 @@
       }
     },
     {
+      "name": "WhitelistingState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "whitelisted",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "padding1",
+            "type": {
+              "array": [
+                "u8",
+                30
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
       "name": "RoyaltyProtectionMarker",
       "type": {
         "kind": "struct",
@@ -1121,19 +1309,6 @@
             "type": "u16"
           },
           {
-            "name": "timestamp",
-            "type": "u64"
-          },
-          {
-            "name": "hmacCode",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
-          },
-          {
             "name": "splTokenSettlement",
             "type": "bool"
           }
@@ -1210,21 +1385,8 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "timestamp",
-            "type": "u32"
-          },
-          {
             "name": "price",
             "type": "u64"
-          },
-          {
-            "name": "hmacCode",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
           },
           {
             "name": "royaltyProtected",
@@ -1268,6 +1430,23 @@
           }
         ]
       }
+    },
+    {
+      "name": "CheckSignal",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Continue"
+          },
+          {
+            "name": "SilentFail"
+          },
+          {
+            "name": "Abort"
+          }
+        ]
+      }
     }
   ],
   "errors": [
@@ -1303,123 +1482,138 @@
     },
     {
       "code": 6006,
-      "name": "InvalidHMAC",
-      "msg": "Invalid hmac code"
-    },
-    {
-      "code": 6007,
       "name": "AllEditionsMinted",
       "msg": "All editions are minted"
     },
     {
-      "code": 6008,
+      "code": 6007,
       "name": "EmptyMetadata",
       "msg": "Metadata account has no info"
     },
     {
-      "code": 6009,
+      "code": 6008,
       "name": "InvalidPricingType",
       "msg": "Pricing type is not valid"
     },
     {
-      "code": 6010,
+      "code": 6009,
       "name": "InvalidEditionType",
       "msg": "Sale type is not valid for this instruction"
     },
     {
-      "code": 6011,
+      "code": 6010,
       "name": "InvalidPrice",
       "msg": "Invalid Price"
     },
     {
-      "code": 6012,
+      "code": 6011,
       "name": "InvalidIncrement",
       "msg": "Invalid Increment"
     },
     {
-      "code": 6013,
+      "code": 6012,
       "name": "InvalidTimestamp",
       "msg": "Invalid timestamp"
     },
     {
-      "code": 6014,
+      "code": 6013,
       "name": "InvalidCPI",
       "msg": "Invalid CPI"
     },
     {
-      "code": 6015,
+      "code": 6014,
       "name": "InstructionNotLastInTransaction",
       "msg": "Instruction not last in transaction"
     },
     {
-      "code": 6016,
+      "code": 6015,
       "name": "WalletMintingCapReached",
       "msg": "Wallet minting cap reached"
     },
     {
-      "code": 6017,
+      "code": 6016,
       "name": "InvalidEditionMark",
       "msg": "The provided edition mark is not valid"
     },
     {
-      "code": 6018,
+      "code": 6017,
       "name": "InvalidEditionDepositAccountOwner",
       "msg": "The provided edition deposit account has an incorrect owner"
     },
     {
-      "code": 6019,
+      "code": 6018,
       "name": "InvalidEditionDepositAccountAuthority",
       "msg": "The provided edition deposit account authority is incorrect"
     },
     {
-      "code": 6020,
+      "code": 6019,
       "name": "InstructionNotPenultimateInTransaction",
       "msg": "Instruction not penultimate in transaction"
     },
     {
-      "code": 6021,
+      "code": 6020,
       "name": "InvalidPriceOrQuantity",
       "msg": "The provided price or quantity is not valid"
     },
     {
-      "code": 6022,
+      "code": 6021,
       "name": "InvalidRoyaltyFee",
       "msg": "The royalties are not valid"
     },
     {
-      "code": 6023,
+      "code": 6022,
       "name": "NotRoyaltyProtected",
       "msg": "The transacted NFT is not marked as royalty protected"
     },
     {
-      "code": 6024,
+      "code": 6023,
       "name": "InvalidBump",
       "msg": "PDA bump is invalid"
     },
     {
-      "code": 6025,
+      "code": 6024,
       "name": "IncorrectNextInstruction",
       "msg": "Incorrect next instruction"
     },
     {
-      "code": 6026,
+      "code": 6025,
       "name": "IncorrectPreviousInstruction",
       "msg": "Incorrect previous instruction"
     },
     {
-      "code": 6027,
+      "code": 6026,
       "name": "InvalidSettlementMint",
       "msg": "Invalid settlement mint"
     },
     {
-      "code": 6028,
+      "code": 6027,
       "name": "NumericalOverflow",
       "msg": "Numerical overflow"
     },
     {
-      "code": 6029,
+      "code": 6028,
       "name": "PublicKeyMismatch",
       "msg": "Public key mismatch"
+    },
+    {
+      "code": 6029,
+      "name": "ChecksFailed",
+      "msg": "Checks failed"
+    },
+    {
+      "code": 6030,
+      "name": "AlreadyWhitelisted",
+      "msg": "Wallet already whitelisted"
+    },
+    {
+      "code": 6031,
+      "name": "NotWhitelisted",
+      "msg": "Wallet is not whitelisted"
+    },
+    {
+      "code": 6032,
+      "name": "InvalidSigner",
+      "msg": "Invalid Signer"
     }
   ],
   "metadata": {
