@@ -126,7 +126,10 @@
         {
           "name": "whitelistingState",
           "isMut": false,
-          "isSigner": false
+          "isSigner": false,
+          "docs": [
+            "CHECK the account is checked in the ix, it is not initialized for not whitelisted users"
+          ]
         },
         {
           "name": "masterMintKey",
@@ -302,14 +305,7 @@
           "isSigner": false
         }
       ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "EndEditionSaleIxData"
-          }
-        }
-      ]
+      "args": []
     },
     {
       "name": "endFixedPriceEditionSale",
@@ -375,107 +371,7 @@
           "isSigner": false
         }
       ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "EndEditionSaleIxData"
-          }
-        }
-      ]
-    },
-    {
-      "name": "createBuynowRoyaltyProtectedSale",
-      "accounts": [
-        {
-          "name": "seller",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "sellerSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "exchgDepositAuthority",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "exchgDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "saleStateAccount",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "mintKey",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "editionPda",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "royaltyProtectionMarker",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManagerTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalTokenManagerProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "CreateBuyNowSaleIxData"
-          }
-        }
-      ]
+      "args": []
     },
     {
       "name": "createBuynowSale",
@@ -798,99 +694,6 @@
       ]
     },
     {
-      "name": "createTransferReceipt",
-      "accounts": [
-        {
-          "name": "exchgDepositAuthority",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mintKey",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "mintSourceTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "transferReceipt",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "currentHolder",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "editionPda",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalManagerTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "exchgDepositAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalMintCounter",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "cardinalTokenManagerProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": {
-            "defined": "CreateTransferReceiptIxData"
-          }
-        }
-      ]
-    },
-    {
       "name": "whitelistWallet",
       "accounts": [
         {
@@ -1168,14 +971,23 @@
         "fields": [
           {
             "name": "whitelisted",
+            "docs": [
+              "Whether or not the wallet is whitelisted for the"
+            ],
             "type": "bool"
           },
           {
             "name": "bump",
+            "docs": [
+              "The bump of the PDA"
+            ],
             "type": "u8"
           },
           {
             "name": "padding1",
+            "docs": [
+              "Extra padding in case we want to add more info"
+            ],
             "type": {
               "array": [
                 "u8",
@@ -1316,18 +1128,6 @@
       }
     },
     {
-      "name": "CreateTransferReceiptIxData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "target",
-            "type": "publicKey"
-          }
-        ]
-      }
-    },
-    {
       "name": "CreateFixedPriceEditionSaleIxData",
       "type": {
         "kind": "struct",
@@ -1363,18 +1163,6 @@
           {
             "name": "settlementMint",
             "type": "publicKey"
-          }
-        ]
-      }
-    },
-    {
-      "name": "EndEditionSaleIxData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "permanentlyEnd",
-            "type": "bool"
           }
         ]
       }
